@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<title>RiskAssess | Heart Disease Prediction</title>
+</head>
+<style>
+    body{
+        background-color: antiquewhite;
+    }
+	button
+{
+	border-style:none;
+  background-color: rgb(59, 183, 28);
+}
+
+h1, h2, h3, h4, h5{
+    text-align: center;
+
+}
+
+form {
+	margin-top: 3%;
+	margin-left: 29%;
+	margin-right: 29%;
+
+}
+
+form fieldset{
+	padding: 30px;
+	border-width: 20px;
+	border-style: groove;
+    border-color: #5a5a5a;
+	background-color: #fff;
+  max-height: 600px;
+    overflow-y: scroll;
+}
+
+fieldset h1 {
+	color: #5a5a5a;
+	padding-bottom: 20px;
+	margin-left: 35px;
+	display: inline-block;
+	cursor: pointer;
+	font-size: 28px;
+	text-align: center;
+}
+
+fieldset label {
+	margin-left: 20px;
+	margin-right: 40px;
+	padding: 23px;
+	font-size: 20px;
+	display: inline-block;
+    width  : 240px;
+}
+fieldset input{
+	padding:8px;
+	color: #938c8c
+}
+fieldset input:focus{
+	color: #000;
+}
+fieldset button
+{
+	margin-left: 60px;
+	color: #fff;
+	background-color: #5a5a5a;
+	border-radius: 3px;
+	padding: 13px 39px;
+	text-align: center;
+	letter-spacing: 0.9px;
+	text-decoration: none;
+	margin-right: 15px;
+	line-height: 26px;
+	font-size: 16px;
+	box-shadow: 0px 1px 3px 0px #5a5a5a;
+	right: 0px;
+	margin-top: 15px;
+}
+
+
+.fieldset{
+	margin-top: 3%;
+	margin-left: 0%;
+	margin-right: 0%;
+	padding: 30px;
+	border-width: 25px;
+	border-style: ridge;
+	border-color: #257a7a;
+	box-shadow: 6px 13px 13px 0px black;
+	background-color: #ebfffa;
+}
+.a1{
+  float: left;
+    width: 25%;
+    height: 500px;
+    /*border: 1px solid black;*/
+    margin: 40px 0px 0px 15px;
+}
+.a1 p {
+    font-size: 17px;
+    font-family: inherit;
+    color: #0e0eb2;
+}
+.a2{
+    float: right;
+    height: 600px;
+    width: 25%;
+    margin: -595px 15px 0px 0px;
+    /*border: 1px solid black;*/
+}
+.a2 p {
+    font-size: 17px;
+    font-family: inherit;
+    color: #0e0eb2;
+}
+
+.result {
+    margin-top: 45px;
+    font-size: 20px;
+    color: black;
+}
+</style>
+<body>
+
+	
+    <h1 style="text-align:center;">Heart Disease Prediction</h1>
+    <h5 style="text-align:center;">Please enter the patient details</h5>
+
+
+
+
+
+<div class="a1">
+  <p>ca: number of major vessels (0-3)</p>
+  <p>cp : Chest Pain type chest pain type</p>
+  <p>CP_0: typical angina</p>
+  <p>CP_1: atypical angina</p>
+  <p>CP_2: non-anginal pain</p>
+  <p>CP_3: asymptomatic</p>
+  <p>rest_ecg : resting electrocardiographic results</p>
+  <p>RESTECG_0: normal</p>
+  <p>RESTECG_1: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</p>
+  <p>RESTECG_2: showing probable or definite left ventricular hypertrophy by Estes' criteria</p>
+  <p>thalach : maximum heart rate achieved</p>
+</div>
+
+
+
+
+
+    <form action="{{ url_for('predict')}}" method="post" class="form-inline">
+        <fieldset>
+            <div class="tabcontent" id="new">
+
+                <div class="form-group">
+                    <label for="age">Age in Years</label>
+                    <input class="form-control" type="text" name="age" placeholder="eg. 34" required="required"/>
+                 </div>
+                 <div class="form-group">
+                    <label for="sex">Sex</label>
+                    <input class="form-control" type="text" name="sex" placeholder="Male -1,Female -0" required="required"/>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="trestbps">Trest Bps</label>
+                    <input class="form-control" type="text" name="trestbps" placeholder="trestbps" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="chol">Cholesterol</label>
+                    <input class="form-control" type="text" name="chol" placeholder="chol" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="fbs">FBS</label>
+                    <input class="form-control" type="text" name="FBS" placeholder=">120 - 1, <120 - 0" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="thalach">Thalach</label>
+                    <input class="form-control" type="text" name="thalach" placeholder="thalach" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="exang">EXANG</label>
+                    <input class="form-control" type="text" name="EXANG" placeholder="EXANG" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="oldpeak">Old Peak</label>
+                    <input class="form-control" type="text" name="oldpeak" placeholder="oldpeak" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="CAA">CAA</label>
+                    <input class="form-control" type="text" name="CAA" placeholder="CAA" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="CP_0">CP_0</label>
+                    <input class="form-control" type="text" name="CP_0" placeholder="CP_0" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="CP_1">CP_1</label>
+                    <input class="form-control" type="text" name="CP_1" placeholder="CP_1" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="CP_2">CP_2</label>
+                    <input class="form-control" type="text" name="CP_2" placeholder="CP_2" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="CP_3">CP_3</label>
+                    <input class="form-control" type="text" name="CP_3" placeholder="CP_3" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="restecg_0">RESTECG_0</label>
+                    <input class="form-control" type="text" name="restecg_0" placeholder="restecg_0" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="restecg_1">RESTECG_1</label>
+                    <input class="form-control" type="text" name="restecg_1" placeholder="restecg_1" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="restecg_2">RESTECG_2</label>
+                    <input class="form-control" type="text" name="restecg_2" placeholder="restecg_2" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="slope_0">SLOPE_0</label>
+                    <input class="form-control" type="text" name="SLOPE_0" placeholder="SLOPE_0" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="slope_1">SLOPE_1</label>
+                    <input class="form-control" type="text" name="SLOPE_1" placeholder="SLOPE_1" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="slope_2">SLOPE_2</label>
+                    <input class="form-control" type="text" name="SLOPE_2" placeholder="SLOPE_2" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="THAL_0">THAL_0</label>
+                    <input class="form-control" type="text" name="THAL_0" placeholder="THAL_0" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="THAL_1">THAL_1</label>
+                    <input class="form-control" type="text" name="THAL_1" placeholder="THAL_1" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="THAL_2">THAL_2</label>
+                    <input class="form-control" type="text" name="THAL_2" placeholder="THAL_2" required="required"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="THAL_3">THAL_3</label>
+                    <input class="form-control" type="text" name="THAL_3" placeholder="THAL_3" required="required"/>
+                  </div>
+
+                  
+                  
+                  
+                  <div>
+                    <center>
+                      <button type="submit">Predict</button>
+                    </center>  
+                </div>
+                  
+                  
+            </div>
+        </fieldset>
+    </form>
+
+   
+<div class="a2">
+  <!--
+  <p>rest_ecg : resting electrocardiographic results</p>
+  <p>Value 0: normal</p>
+  <p>Value 1: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</p>
+  <p>Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria</p>
+  <p>thalach : maximum heart rate achieved</p>
+
+  -->
+  <div class="result">
+      <h3><b>{{pred}}</b></h3>
+      <h3><b>{{pred1}}</b></h3>
+  </div>
+</div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
